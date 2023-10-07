@@ -22,7 +22,7 @@ void addParticle(Material_id material, int x, int y){
 	p.material = material;
 	p.x = x;
 	p.y = y;
-	
+
 	addParticle(&p);
 }
 
@@ -40,6 +40,16 @@ void removeParticle(int x, int y){
 			return;
 		}
 	}
+}
+
+Particle *getParticle(int x, int y){
+	for(size_t i=0;i<particleAmount;i++){
+		Particle *p = particles[i];
+		if(p->x == x && p->y == y){
+			return p;
+		}
+	}
+	return NULL;
 }
 
 int main(int argc, char* argv[]){
