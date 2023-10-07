@@ -16,7 +16,6 @@ const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 2;
-size_t particleAmount = 0;
 vector<Particle*> particles;
 Material_id currentMaterial = MATERIAL_STONE;
 
@@ -48,7 +47,7 @@ void removeParticle(int x, int y){
 }
 
 Particle *getParticle(int x, int y){
-	for(size_t i=0;i<particleAmount;i++){
+	for(size_t i=0;i<particles.size();i++){
 		Particle *p = particles[i];
 		if(p->x == x && p->y == y){
 			return p;
