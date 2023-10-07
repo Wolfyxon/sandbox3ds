@@ -21,6 +21,16 @@ void removeParticle(size_t index){
 	particles[index] = NULL;
 }
 
+void removeParticle(int x, int y){
+	for(size_t i=0;i<particleAmount;i++){
+		Particle *p = particles[i];
+		if(p->x == x && p->y == y){
+			removeParticle(i);
+			return;
+		}
+	}
+}
+
 int main(int argc, char* argv[]){
 	gfxInitDefault();
 	
