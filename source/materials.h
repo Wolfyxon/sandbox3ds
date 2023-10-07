@@ -14,19 +14,19 @@ enum Material_id {
     MATERIAL_SAND,
 };
 
-typedef struct Material {
+typedef struct {
     Material_id id;
     int8_t gravity = -1;
     string name = "Unknown material";
     u32 color = C2D_Color32f(1.0f,0.0f,0.0f,1.0f);
-};
+} Material;
 
-typedef struct Particle {
+typedef struct {
     Material_id material;
     float temperature = 0;
     u16 x;
     u16 y;
-};
+} Particle;
 
 
 #endif
