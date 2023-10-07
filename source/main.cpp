@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <3ds.h>
+#include <citro2d.h>
+#include <citro3d.h>
 #include "materials.h"
 
 const int BOTTOM_SCREEN_WIDTH = 320;
@@ -54,10 +56,14 @@ Particle *getParticle(int x, int y){
 
 int main(int argc, char* argv[]){
 	gfxInitDefault();
-	
+	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
+	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
+	C2D_Prepare();
+
+	C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
+
 	while (aptMainLoop()){
 		gspWaitForVBlank();
-		gfxSwapBuffers();
 		hidScanInput();
 
 		
@@ -71,6 +77,17 @@ int main(int argc, char* argv[]){
 			removeParticle(touchPos.px,touchPos.py);
 			addParticle(currentMaterial,touchPos.px,touchPos.py);
 		}
+
+		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
+		C2D_TargetClear(bottom, C2D_Color32f(0.0f,0.0f,0.0f,1.0f));
+		C2D_SceneBegin(bottom);
+
+		for(int i=0;i<particleAmount;i++){
+			Particle *p = particles[i];
+			C2D_DrawRectSolid(p->x,p->y, 0, 1,1, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
+		}
+
+		C3D_FrameEnd(0);
 	}
 
 	gfxExit();
