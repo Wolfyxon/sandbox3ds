@@ -24,8 +24,8 @@ typedef struct Material {
 typedef struct Particle {
     Material_id material;
     float temperature = 0;
-    int x;
-    int y;
+    u16 x;
+    u16 y;
 };
 
 

@@ -23,7 +23,7 @@ void addParticle(Particle *particle){
 	particleAmount++;
 }
 
-void addParticle(Material_id material, int x, int y){
+void addParticle(Material_id material, u16 x, u16 y){
 	Particle p;
 	p.material = material;
 	p.x = x;
@@ -88,7 +88,7 @@ int main(int argc, char* argv[]){
 
 		for(int i=0;i<particleAmount;i++){
 			Particle *p = particles[i];
-			C2D_DrawRectSolid(p->x,p->y, 0, 1,1, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
+			C2D_DrawRectSolid(p->x,p->y, 0.0f, 1.0f,1.0f, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
 		}
 
 		C3D_FrameEnd(0);
