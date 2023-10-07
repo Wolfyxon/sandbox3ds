@@ -24,6 +24,9 @@ void addParticle(Particle particle){
 }
 
 void addParticle(Material_id material, u16 x, u16 y){
+	if(x>BOTTOM_SCREEN_WIDTH) return;
+	if(y>BOTTOM_SCREEN_HEIGHT) return;
+
 	Particle p;
 	p.material = material;
 	p.x = x;
