@@ -5,6 +5,10 @@
 #include <citro2d.h>
 #include <citro3d.h>
 #include "materials.h"
+#include "debug.h"
+
+using std::string;
+using std::to_string;
 
 const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
