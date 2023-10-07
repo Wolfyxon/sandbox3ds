@@ -17,6 +17,10 @@ void addParticle(Particle *particle){
 	particleAmount++;
 }
 
+void removeParticle(size_t index){
+	particles[index] = NULL;
+}
+
 int main(int argc, char* argv[]){
 	gfxInitDefault();
 	
