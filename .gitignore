@@ -2,3 +2,4 @@
 *.cia
 *.elf
 *.smdh
+build/
