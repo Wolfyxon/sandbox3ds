@@ -65,7 +65,11 @@ int main(int argc, char* argv[]){
 		if (kDown & KEY_START) break;
 
 		if(kDown & KEY_TOUCH){
+			touchPosition touchPos;
+			touchRead(&touchPos);
 
+			removeParticle(touchPos.px,touchPos.py);
+			addParticle(currentMaterial,touchPos.px,touchPos.py);
 		}
 	}
 
