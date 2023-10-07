@@ -16,10 +16,10 @@ const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 2;
-vector<Particle*> particles;
+vector<Particle> particles;
 Material_id currentMaterial = MATERIAL_STONE;
 
-void addParticle(Particle *particle){
+void addParticle(Particle particle){
 	particles.push_back(particle);
 }
 
@@ -29,7 +29,7 @@ void addParticle(Material_id material, u16 x, u16 y){
 	p.x = x;
 	p.y = y;
 
-	addParticle(&p);
+	addParticle(p);
 }
 
 void removeParticle(size_t index){
@@ -38,22 +38,21 @@ void removeParticle(size_t index){
 
 void removeParticle(int x, int y){
 	for(size_t i=0;i<particles.size();i++){
-		Particle *p = particles[i];
-		if(p->x == x && p->y == y){
+		Particle p = particles[i];
+		if(p.x == x && p.y == y){
 			removeParticle(i);
 			return;
 		}
 	}
 }
 
-Particle *getParticle(int x, int y){
+Particle getParticle(int x, int y){
 	for(size_t i=0;i<particles.size();i++){
-		Particle *p = particles[i];
-		if(p->x == x && p->y == y){
+		Particle p = particles[i];
+		if(p.x == x && p.y == y){
 			return p;
 		}
 	}
-	return NULL;
 }
 
 int main(int argc, char* argv[]){
@@ -86,9 +85,8 @@ int main(int argc, char* argv[]){
 		C2D_SceneBegin(bottom);
 
 		for(size_t i=0;i<particles.size();i++){
-			Particle *p = particles[i];
-			if(p == NULL) continue;
-			C2D_DrawRectSolid(p->x,p->y, 0.0f, 1.0f,1.0f, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
+			Particle p = particles[i];
+			C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
 		}
 
 		C3D_FrameEnd(0);
