@@ -58,7 +58,7 @@ Particle getParticle(int x, int y){
 int main(int argc, char* argv[]){
 	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
-	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
+	C2D_Init(1024*100);
 	C2D_Prepare();
 
 	C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
