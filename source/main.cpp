@@ -71,9 +71,10 @@ int main(int argc, char* argv[]){
 
 		
 		u32 kDown = hidKeysDown();
+		u32 kHeld = hidKeysHeld();
 		if (kDown & KEY_START) break;
 
-		if(kDown & KEY_TOUCH){
+		if(kHeld & KEY_TOUCH){
 			touchPosition touchPos;
 			touchRead(&touchPos);
 
