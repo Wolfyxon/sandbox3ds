@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <vector>
 #include <3ds.h>
 #include <citro2d.h>
 #include <citro3d.h>
@@ -9,18 +10,18 @@
 
 using std::string;
 using std::to_string;
+using std::vector;
 
 const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 2;
 size_t particleAmount = 0;
-Particle *particles[BOTTOM_SCREEN_HEIGHT*BOTTOM_SCREEN_WIDTH];
+vector<Particle*> particles;
 Material_id currentMaterial = MATERIAL_STONE;
 
 void addParticle(Particle *particle){
-	particles[particleAmount] = particle;
-	particleAmount++;
+	particles.push_back(particle);
 }
 
 void addParticle(Material_id material, u16 x, u16 y){
@@ -34,8 +35,7 @@ void addParticle(Material_id material, u16 x, u16 y){
 
 void removeParticle(size_t index){
 	if(particleAmount > particleAmount-1) return;
-	particles[index] = NULL;
-	particleAmount--;
+	
 }
 
 void removeParticle(int x, int y){
@@ -78,7 +78,7 @@ int main(int argc, char* argv[]){
 			touchPosition touchPos;
 			touchRead(&touchPos);
 
-			removeParticle(touchPos.px,touchPos.py);
+			//removeParticle(touchPos.px,touchPos.py);
 			addParticle(currentMaterial,touchPos.px,touchPos.py);
 		}
 
@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
 		C2D_TargetClear(bottom, C2D_Color32f(0.0f,0.0f,0.0f,1.0f));
 		C2D_SceneBegin(bottom);
 
-		for(size_t i=0;i<particleAmount;i++){
+		for(size_t i=0;i<particles.size();i++){
 			Particle *p = particles[i];
 			C2D_DrawRectSolid(p->x,p->y, 0.0f, 1.0f,1.0f, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
 		}
