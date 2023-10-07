@@ -1,3 +1,2 @@
-# template
-
-This is a template for starting new 3DS libctru projects.
+# SAND:BOX 3ds
+An unofficial remake of SAND:BOX by smellymoo for the Nintendo 3DS
