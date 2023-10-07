@@ -12,6 +12,11 @@ int particleAmount = 0;
 Particle *particles[BOTTOM_SCREEN_HEIGHT*BOTTOM_SCREEN_WIDTH];
 Material_id currentMaterial = MATERIAL_STONE;
 
+void addParticle(Particle *particle){
+	particles[particleAmount] = particle;
+	particleAmount++;
+}
+
 int main(int argc, char* argv[]){
 	gfxInitDefault();
 	
