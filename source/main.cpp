@@ -18,7 +18,9 @@ void addParticle(Particle *particle){
 }
 
 void removeParticle(size_t index){
+	if(particleAmount > particleAmount-1) return;
 	particles[index] = NULL;
+	particleAmount--;
 }
 
 void removeParticle(int x, int y){
