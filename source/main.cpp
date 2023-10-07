@@ -15,7 +15,7 @@ using std::vector;
 const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
-int brushSize = 2;
+int brushSize = 5;
 vector<Particle> particles;
 Material_id currentMaterial = MATERIAL_STONE;
 
@@ -76,8 +76,17 @@ int main(int argc, char* argv[]){
 			touchPosition touchPos;
 			touchRead(&touchPos);
 
-			removeParticle(touchPos.px,touchPos.py);
-			addParticle(currentMaterial,touchPos.px,touchPos.py);
+			int startX = touchPos.px - brushSize / 2;
+    		int startY = touchPos.py - brushSize / 2;
+    		int endX = startX + brushSize;
+    		int endY = startY + brushSize;
+
+    		for (int x = startX; x < endX; x++) {
+        		for (int y = startY; y < endY; y++) {
+            		removeParticle(x, y);
+            		addParticle(currentMaterial, x, y);
+        		}
+    		}
 		}
 
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
