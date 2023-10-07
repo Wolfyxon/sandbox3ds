@@ -8,6 +8,8 @@ const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 2;
+int particleAmount = 0;
+Particle *particles[BOTTOM_SCREEN_HEIGHT*BOTTOM_SCREEN_WIDTH];
 Material_id currentMaterial = MATERIAL_STONE;
 
 int main(int argc, char* argv[]){
