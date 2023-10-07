@@ -14,7 +14,7 @@ const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 2;
-int particleAmount = 0;
+size_t particleAmount = 0;
 Particle *particles[BOTTOM_SCREEN_HEIGHT*BOTTOM_SCREEN_WIDTH];
 Material_id currentMaterial = MATERIAL_STONE;
 
@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
 		C2D_TargetClear(bottom, C2D_Color32f(0.0f,0.0f,0.0f,1.0f));
 		C2D_SceneBegin(bottom);
 
-		for(int i=0;i<particleAmount;i++){
+		for(size_t i=0;i<particleAmount;i++){
 			Particle *p = particles[i];
 			C2D_DrawRectSolid(p->x,p->y, 0.0f, 1.0f,1.0f, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
 		}
