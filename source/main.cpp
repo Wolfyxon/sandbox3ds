@@ -17,6 +17,15 @@ void addParticle(Particle *particle){
 	particleAmount++;
 }
 
+void addParticle(Material_id material, int x, int y){
+	Particle p;
+	p.material = material;
+	p.x = x;
+	p.y = y;
+	
+	addParticle(&p);
+}
+
 void removeParticle(size_t index){
 	if(particleAmount > particleAmount-1) return;
 	particles[index] = NULL;
