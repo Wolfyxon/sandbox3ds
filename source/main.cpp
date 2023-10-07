@@ -34,12 +34,11 @@ void addParticle(Material_id material, u16 x, u16 y){
 }
 
 void removeParticle(size_t index){
-	if(particleAmount > particleAmount-1) return;
-	
+	particles.erase(particles.begin()+index);
 }
 
 void removeParticle(int x, int y){
-	for(size_t i=0;i<particleAmount;i++){
+	for(size_t i=0;i<particles.size();i++){
 		Particle *p = particles[i];
 		if(p->x == x && p->y == y){
 			removeParticle(i);
@@ -78,7 +77,7 @@ int main(int argc, char* argv[]){
 			touchPosition touchPos;
 			touchRead(&touchPos);
 
-			//removeParticle(touchPos.px,touchPos.py);
+			removeParticle(touchPos.px,touchPos.py);
 			addParticle(currentMaterial,touchPos.px,touchPos.py);
 		}
 
