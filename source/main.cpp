@@ -83,7 +83,7 @@ bool particleExists(int x, int y){
 	return false;
 }
 
-Material_id getMaterial(int x, int y){
+Material_id getMaterialId(int x, int y){
 	for(size_t i=0;i<particles.size();i++){
 		Particle p = particles[i];
 		if(p.x == x && p.y == y){
@@ -92,6 +92,8 @@ Material_id getMaterial(int x, int y){
 	}
 	return MATERIAL_AIR;
 }
+
+
 
 int main(int argc, char* argv[]){
 	gfxInitDefault();
