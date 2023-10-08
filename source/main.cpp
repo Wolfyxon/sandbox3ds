@@ -25,13 +25,14 @@ Material_id currentMaterial = MATERIAL_SAND;
 
 map<Material_id, Material> materials;
 
-void registerMaterial(Material_id id, Material_type type, float r = 1, float g = 1, float b = 1, int8_t gravity_multiplier = 1){
+void registerMaterial(Material_id id, Material_type type, float r = 1, float g = 1, float b = 1,float minColorMultiplier = 1, int8_t gravity_multiplier = 1){
 	Material m;
 	m.id = id;
 	m.type = type;
 	m.r = r;
 	m.g = g;
 	m.b = b;
+	m.minColorMultiplier = minColorMultiplier;
 	m.gravity_multiplier = gravity_multiplier;
 
 	materials[id] = m;
@@ -117,8 +118,8 @@ int main(int argc, char* argv[]){
 
 	C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 
-	registerMaterial(MATERIAL_STONE,MATERIAL_TYPE_SOLID,0.5,0.5,0.5);
-	registerMaterial(MATERIAL_SAND,MATERIAL_TYPE_POWDER,1,1,0);
+	registerMaterial(MATERIAL_STONE,MATERIAL_TYPE_SOLID,0.5,0.5,0.5, 0.9);
+	registerMaterial(MATERIAL_SAND,MATERIAL_TYPE_POWDER,1,1,0, 0.8);
 
 	while (aptMainLoop()){
 		gspWaitForVBlank();
@@ -141,7 +142,7 @@ int main(int argc, char* argv[]){
     		for (int x = startX; x < endX; x++) {
         		for (int y = startY; y < endY; y++) {
             		removeParticle(x, y);
-            		addParticle(currentMaterial, x, y);
+            		addParticle(currentMaterial, x, y,randf(materials[currentMaterial].minColorMultiplier,1));
         		}
     		}
 		}

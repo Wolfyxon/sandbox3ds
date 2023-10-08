@@ -27,6 +27,7 @@ typedef struct {
     Material_type type = MATERIAL_TYPE_SOLID;
     int8_t gravity_multiplier = 1;
     string name = "Unknown material";
+    float minColorMultiplier = 1;
     float r = 1;
     float g = 1;
     float b = 1;
