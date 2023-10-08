@@ -19,6 +19,7 @@ const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 5;
 int gravity = 10;
+bool borders = true;
 vector<Particle> particles;
 Material_id currentMaterial = MATERIAL_SAND;
 
@@ -157,9 +158,14 @@ int main(int argc, char* argv[]){
 
 				if(m.type == MATERIAL_TYPE_POWDER || m.type == MATERIAL_TYPE_FLUID){
 					int gr = gravity*m.gravity_multiplier;
-					Material_type bottomType = getMaterialType(p.x,p.y+gr);
-					if(bottomType != MATERIAL_TYPE_SOLID && bottomType != MATERIAL_TYPE_POWDER){
-						particles[i].y += gr;
+
+					if(!borders || p.y+gr<BOTTOM_SCREEN_HEIGHT){
+
+						Material_type bottomType = getMaterialType(p.x,p.y+gr);
+						if(bottomType != MATERIAL_TYPE_SOLID && bottomType != MATERIAL_TYPE_POWDER){
+							particles[i].y += gr;
+						}
+						
 					}
 				}
 			}
