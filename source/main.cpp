@@ -18,8 +18,9 @@ const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
 
 int brushSize = 5;
+int gravity = 10;
 vector<Particle> particles;
-Material_id currentMaterial = MATERIAL_STONE;
+Material_id currentMaterial = MATERIAL_SAND;
 
 map<Material_id, Material> materials;
 
@@ -118,6 +119,10 @@ int main(int argc, char* argv[]){
 			if(materials.count(p.material)){
 				Material m = materials[p.material];
 				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, m.color );
+
+				if(m.type == MATERIAL_TYPE_POWDER || m.type == MATERIAL_TYPE_FLUID){
+					particles[i].y += gravity*m.gravity_multiplier;
+				}
 			}
 			
 		}
