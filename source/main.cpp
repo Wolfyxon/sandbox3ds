@@ -93,7 +93,13 @@ Material_id getMaterialId(int x, int y){
 	return MATERIAL_AIR;
 }
 
-
+Material_type getMaterialType(int x, int y){
+	Material_id m = getMaterialId(x,y);
+	if(m != MATERIAL_AIR && materials.count(m)){
+		return materials[m].type;
+	}
+	return MATERIAL_TYPE_NONE;
+}
 
 int main(int argc, char* argv[]){
 	gfxInitDefault();
