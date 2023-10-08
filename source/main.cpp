@@ -115,7 +115,11 @@ int main(int argc, char* argv[]){
 
 		for(size_t i=0;i<particles.size();i++){
 			Particle p = particles[i];
-			C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, C2D_Color32f(1.0f,0.0f,0.0f,1.0f) );
+			if(materials.count(p.material)){
+				Material m = materials[p.material];
+				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, m.color );
+			}
+			
 		}
 
 		C3D_FrameEnd(0);
