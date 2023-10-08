@@ -156,7 +156,11 @@ int main(int argc, char* argv[]){
 				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, m.color );
 
 				if(m.type == MATERIAL_TYPE_POWDER || m.type == MATERIAL_TYPE_FLUID){
-					particles[i].y += gravity*m.gravity_multiplier;
+					int gr = gravity*m.gravity_multiplier;
+					Material_type bottomType = getMaterialType(p.x,p.y+gr);
+					if(bottomType != MATERIAL_TYPE_SOLID && bottomType != MATERIAL_TYPE_POWDER){
+						particles[i].y += gr;
+					}
 				}
 			}
 			
