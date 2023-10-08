@@ -25,7 +25,7 @@ enum Material_type {
 typedef struct {
     Material_id id;
     Material_type type = MATERIAL_TYPE_SOLID;
-    int8_t gravity_multiplier = 1;
+    u32 gravity_multiplier = 1;
     string name = "Unknown material";
     float minColorMultiplier = 1;
     float r = 1;

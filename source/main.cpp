@@ -166,15 +166,13 @@ int main(int argc, char* argv[]){
 				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, C2D_Color32f(m.r*mul,m.g*mul,m.b*mul,1) );
 
 				if(m.type == MATERIAL_TYPE_POWDER || m.type == MATERIAL_TYPE_FLUID){
-					int gr = gravity*m.gravity_multiplier;
+					u32 gr = gravity*m.gravity_multiplier;
 
 					if(!borders || p.y+gr<BOTTOM_SCREEN_HEIGHT){
-
 						Material_type bottomType = getMaterialType(p.x,p.y+gr);
 						if(bottomType != MATERIAL_TYPE_SOLID && bottomType != MATERIAL_TYPE_POWDER){
 							particles[i].y += gr;
 						}
-
 					}
 				}
 			}
