@@ -41,7 +41,7 @@ void addParticle(Particle particle){
 	particles.push_back(particle);
 }
 
-void addParticle(Material_id material, u16 x, u16 y){
+void addParticle(Material_id material, u16 x, u16 y, float colorMultiplier = 1){
 	if(x>BOTTOM_SCREEN_WIDTH) return;
 	if(y>BOTTOM_SCREEN_HEIGHT) return;
 
@@ -49,6 +49,7 @@ void addParticle(Material_id material, u16 x, u16 y){
 	p.material = material;
 	p.x = x;
 	p.y = y;
+	p.colorMultiplier = colorMultiplier;
 
 	addParticle(p);
 }
