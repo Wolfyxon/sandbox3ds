@@ -80,6 +80,9 @@ int main(int argc, char* argv[]){
 
 	C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 
+	registerMaterial(MATERIAL_STONE,MATERIAL_TYPE_SOLID,C2D_Color32f(0.5,0.5,0.5,1));
+	registerMaterial(MATERIAL_SAND,MATERIAL_TYPE_POWDER,C2D_Color32f(1,1,0,1));
+
 	while (aptMainLoop()){
 		gspWaitForVBlank();
 		hidScanInput();
