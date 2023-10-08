@@ -116,6 +116,13 @@ int main(int argc, char* argv[]){
 
 		for(size_t i=0;i<particles.size();i++){
 			Particle p = particles[i];
+
+			if(p.x < 0 || p.x > BOTTOM_SCREEN_WIDTH || p.y < 0 || p.y > BOTTOM_SCREEN_HEIGHT){
+				removeParticle(i);
+				i--;
+				continue;
+			}
+
 			if(materials.count(p.material)){
 				Material m = materials[p.material];
 				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, m.color );
