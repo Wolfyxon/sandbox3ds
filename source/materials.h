@@ -16,6 +16,7 @@ enum Material_id {
 
 enum Material_type {
     MATERIAL_TYPE_SOLID,
+    MATERIAL_TYPE_POWDER,
     MATERIAL_TYPE_FLUID,
     MATERIAL_TYPE_GAS,
 };
