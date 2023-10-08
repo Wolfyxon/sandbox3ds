@@ -14,8 +14,15 @@ enum Material_id {
     MATERIAL_SAND,
 };
 
+enum Material_type {
+    MATERIAL_TYPE_SOLID,
+    MATERIAL_TYPE_FLUID,
+    MATERIAL_TYPE_GAS,
+};
+
 typedef struct {
     Material_id id;
+    Material_type type = MATERIAL_TYPE_SOLID;
     int8_t gravity = -1;
     string name = "Unknown material";
     u32 color = C2D_Color32f(1.0f,0.0f,0.0f,1.0f);
