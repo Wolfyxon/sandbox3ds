@@ -23,7 +23,7 @@ enum Material_type {
 typedef struct {
     Material_id id;
     Material_type type = MATERIAL_TYPE_SOLID;
-    int8_t gravity = -1;
+    int8_t gravity_multiplier = 1;
     string name = "Unknown material";
     u32 color = C2D_Color32f(1.0f,0.0f,0.0f,1.0f);
 } Material;
