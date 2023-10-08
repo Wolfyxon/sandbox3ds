@@ -97,6 +97,10 @@ Material_id getMaterialId(int x, int y){
 	return MATERIAL_AIR;
 }
 
+float randf(float min, float max){
+    return min + (rand() / ( RAND_MAX / (min-max) ) );  
+}
+
 Material_type getMaterialType(int x, int y){
 	Material_id m = getMaterialId(x,y);
 	if(m != MATERIAL_AIR && materials.count(m)){
