@@ -27,12 +27,15 @@ typedef struct {
     Material_type type = MATERIAL_TYPE_SOLID;
     int8_t gravity_multiplier = 1;
     string name = "Unknown material";
-    u32 color = C2D_Color32f(1.0f,0.0f,0.0f,1.0f);
+    float r = 1;
+    float g = 1;
+    float b = 1;
 } Material;
 
 typedef struct {
     Material_id material;
     float temperature = 0;
+    float colorMultiplier = 0.9;
     u16 x;
     u16 y;
 } Particle;

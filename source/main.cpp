@@ -25,11 +25,13 @@ Material_id currentMaterial = MATERIAL_SAND;
 
 map<Material_id, Material> materials;
 
-void registerMaterial(Material_id id, Material_type type, u32 color = C2D_Color32f(1,1,1,1), int8_t gravity_multiplier = 1){
+void registerMaterial(Material_id id, Material_type type, float r = 1, float g = 1, float b = 1, int8_t gravity_multiplier = 1){
 	Material m;
 	m.id = id;
 	m.type = type;
-	m.color = color;
+	m.r = r;
+	m.g = g;
+	m.b = b;
 	m.gravity_multiplier = gravity_multiplier;
 
 	materials[id] = m;
@@ -110,8 +112,8 @@ int main(int argc, char* argv[]){
 
 	C3D_RenderTarget* bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 
-	registerMaterial(MATERIAL_STONE,MATERIAL_TYPE_SOLID,C2D_Color32f(0.5,0.5,0.5,1));
-	registerMaterial(MATERIAL_SAND,MATERIAL_TYPE_POWDER,C2D_Color32f(1,1,0,1));
+	registerMaterial(MATERIAL_STONE,MATERIAL_TYPE_SOLID,0.5,0.5,0.5);
+	registerMaterial(MATERIAL_SAND,MATERIAL_TYPE_POWDER,1,1,0);
 
 	while (aptMainLoop()){
 		gspWaitForVBlank();
@@ -154,7 +156,8 @@ int main(int argc, char* argv[]){
 
 			if(materials.count(p.material)){
 				Material m = materials[p.material];
-				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, m.color );
+				float mul = p.colorMultiplier;
+				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, C2D_Color32f(m.r*mul,m.g*mul,m.b*mul,1) );
 
 				if(m.type == MATERIAL_TYPE_POWDER || m.type == MATERIAL_TYPE_FLUID){
 					int gr = gravity*m.gravity_multiplier;
@@ -165,7 +168,7 @@ int main(int argc, char* argv[]){
 						if(bottomType != MATERIAL_TYPE_SOLID && bottomType != MATERIAL_TYPE_POWDER){
 							particles[i].y += gr;
 						}
-						
+
 					}
 				}
 			}
