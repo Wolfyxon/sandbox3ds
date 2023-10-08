@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <vector>
+#include <map>
 #include <3ds.h>
 #include <citro2d.h>
 #include <citro3d.h>
@@ -11,6 +12,7 @@
 using std::string;
 using std::to_string;
 using std::vector;
+using std::map;
 
 const int BOTTOM_SCREEN_WIDTH = 320;
 const int BOTTOM_SCREEN_HEIGHT = 240;
@@ -18,6 +20,18 @@ const int BOTTOM_SCREEN_HEIGHT = 240;
 int brushSize = 5;
 vector<Particle> particles;
 Material_id currentMaterial = MATERIAL_STONE;
+
+map<Material_id, Material> materials;
+
+void registerMaterial(Material_id id, Material_type type, u32 color = C2D_Color32f(1,1,1,1), int8_t gravity_multiplier = 1){
+	Material m;
+	m.id = id;
+	m.type = type;
+	m.color = color;
+	m.gravity_multiplier = gravity_multiplier;
+
+	materials[id] = m;
+}
 
 void addParticle(Particle particle){
 	particles.push_back(particle);
