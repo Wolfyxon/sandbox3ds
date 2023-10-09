@@ -76,6 +76,7 @@ Particle getParticle(int x, int y){
 			return p;
 		}
 	}
+	return nullParticle();
 }
 
 bool particleExists(int x, int y){
