@@ -35,11 +35,17 @@ typedef struct {
 
 typedef struct {
     Material_id material;
+    bool exists = false;
     float temperature = 0;
     float colorMultiplier = 0.9;
     u16 x;
     u16 y;
 } Particle;
 
+Particle nullParticle(){
+    Particle p;
+    p.exists = false;
+    return p;
+}
 
 #endif
