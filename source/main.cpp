@@ -111,6 +111,17 @@ Material_type getMaterialType(int x, int y){
 	return MATERIAL_TYPE_NONE;
 }
 
+u32 fall(u32 x,u32 y, int grav){
+	for(size_t i=1;i<grav;i++){
+		Material_type mt = getMaterialType(x,y+i);
+		if(mt != MATERIAL_TYPE_NONE && mt != MATERIAL_TYPE_GAS && mt != MATERIAL_TYPE_FLUID){
+			return y+i-1;
+		}
+	}
+	if(borders && y+grav > BOTTOM_SCREEN_HEIGHT) return BOTTOM_SCREEN_HEIGHT;
+	return y+grav;
+}
+
 int main(int argc, char* argv[]){
 	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
@@ -168,13 +179,7 @@ int main(int argc, char* argv[]){
 
 				if(m.type == MATERIAL_TYPE_POWDER || m.type == MATERIAL_TYPE_FLUID){
 					u32 gr = gravity*m.gravity_multiplier;
-
-					if(!borders || p.y+gr<BOTTOM_SCREEN_HEIGHT){
-						Material_type bottomType = getMaterialType(p.x,p.y+gr);
-						if(bottomType != MATERIAL_TYPE_SOLID && bottomType != MATERIAL_TYPE_POWDER){
-							particles[i].y += gr;
-						}
-					}
+					particles[i].y = fall(p.x,p.y,gr);
 				}
 			}
 			
