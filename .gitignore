@@ -2,4 +2,5 @@
 *.cia
 *.elf
 *.smdh
+*.lst
 build/
