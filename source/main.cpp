@@ -176,8 +176,9 @@ int main(int argc, char* argv[]){
 				continue;
 			}
 
-			if(materials.count(p.material)){
-				Material m = materials[p.material];
+			auto materialIt = materials.find(p.material);
+			if(materialIt != materials.end()){
+				Material m = materialIt->second;
 				float mul = p.colorMultiplier;
 				C2D_DrawRectSolid(p.x,p.y, 0.0f, 1.0f,1.0f, C2D_Color32f(m.r*mul,m.g*mul,m.b*mul,1) );
 
