@@ -99,9 +99,10 @@ Material_id getMaterialId(int x, int y){
 	return MATERIAL_AIR;
 }
 
-float randf(float min, float max){
-    return min + (rand() / ( RAND_MAX / (min-max) ) );  
+float randf(float min, float max) {
+    return min + (rand() / (RAND_MAX / (max - min + 1) + 1));
 }
+
 
 Material_type getMaterialType(int x, int y){
 	Material_id m = getMaterialId(x,y);
@@ -151,10 +152,13 @@ int main(int argc, char* argv[]){
     		int endX = startX + brushSize;
     		int endY = startY + brushSize;
 
+			Material data = materials[currentMaterial];
     		for (int x = startX; x < endX; x++) {
         		for (int y = startY; y < endY; y++) {
-            		removeParticle(x, y);
-            		addParticle(currentMaterial, x, y,randf(materials[currentMaterial].minColorMultiplier,1));
+					if(data.type == MATERIAL_TYPE_POWDER && randf(0,1) < 0.5f){ // scatter
+						removeParticle(x, y);
+            			addParticle(currentMaterial, x, y,randf(data.minColorMultiplier,1));
+					}
         		}
     		}
 		}
