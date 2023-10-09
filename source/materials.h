@@ -35,7 +35,7 @@ typedef struct {
 
 typedef struct {
     Material_id material;
-    bool exists = false;
+    bool exists = true;
     float temperature = 0;
     float colorMultiplier = 0.9;
     u16 x;
